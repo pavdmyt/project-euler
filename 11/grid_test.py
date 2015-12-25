@@ -28,12 +28,6 @@ def test_get_value(ref_grid_obj):
     assert ref_grid_obj.get_value(2, 2) == 11
 
 
-def test_next(ex_grid, ref_grid_obj):
-    res_lst = [item for item in ref_grid_obj]
-    flat_grid = [item for row in ex_grid for item in row]
-    assert res_lst == flat_grid
-
-
 def test_get_right_neighbors(ref_grid_obj):
     result = ref_grid_obj.get_right_neighbors(0, pos=(0, 0))
     assert result == (1,)

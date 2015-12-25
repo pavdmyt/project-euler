@@ -10,35 +10,17 @@ class Grid:
             # !!!TODO: make CLONE here.
             self._grid = export_grid
         else:
-            self._grid = [[[] for col in range(width)] for row in range(height)]
+            self._grid = [[[] for col in range(width)]
+                          for row in range(height)]
 
         self._height = len(self._grid)
         self._width = len(self._grid[0])
         self._moves_done = 0  # required for looping over the grid.
-        # Current position in the grid (selected cell).
-        self._cur_position = {'height': 0, 'width': 0}
         self._flat_grid = [item for row in self._grid for item in row]
 
     def __repr__(self):
         res = [str(row) for row in self._grid]
         return '\n'.join(res)
-
-    def __iter__(self):
-        return self
-
-    def next(self):
-        """
-        Specifies how looping is done.
-        """
-        height, width = self.get_size()
-        self._moves_done += 1
-        if self._moves_done == (height * width) + 1:
-            # Clear values for the next usage.
-            self._moves_done = 0
-            self._cur_position['height'] = 0
-            self._cur_position['width'] = 0
-            raise StopIteration
-        return self._flat_grid[self._moves_done - 1]
 
     def get_size(self):
         """
