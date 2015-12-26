@@ -57,14 +57,25 @@ def test_get_down_neighbors(ref_grid_obj):
 
 
 def test_get_diag_neighbors(ref_grid_obj):
-    result = ref_grid_obj.get_diag_neighbors(0, pos=(0, 0))
-    assert result == (1,)
+    # position (0, 1)
+    result = ref_grid_obj.get_diag_neighbors(0, pos=(0, 1))
+    assert result == (2,)
 
-    result = ref_grid_obj.get_diag_neighbors(1, pos=(0, 0))
-    assert result == (1, 6)
+    result = ref_grid_obj.get_diag_neighbors(1, pos=(0, 1))
+    assert result == (2, 7)
 
-    result = ref_grid_obj.get_diag_neighbors(2, pos=(0, 0))
-    assert result == (1, 6, 11)
+    result = ref_grid_obj.get_diag_neighbors(2, pos=(0, 1))
+    assert result == (2, 7, 12)
 
-    result = ref_grid_obj.get_diag_neighbors(3, pos=(0, 0))
-    assert result == (1, 6, 11)
+    result = ref_grid_obj.get_diag_neighbors(3, pos=(0, 1))
+    assert result == (2, 7, 12)
+
+    # position (0, 2)
+    result = ref_grid_obj.get_diag_neighbors(0, pos=(0, 2))
+    assert result == (3,)
+
+    result = ref_grid_obj.get_diag_neighbors(1, pos=(0, 2))
+    assert result == (3, 8)
+
+    result = ref_grid_obj.get_diag_neighbors(2, pos=(0, 2))
+    assert result == (3, 8)

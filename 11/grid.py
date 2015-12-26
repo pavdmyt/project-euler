@@ -66,12 +66,15 @@ class Grid:
         Returns current position value + specified qty of the
         downward diagonal right neighbors.
         """
-        row, col = pos
+        height, width = pos
         diag_vals = []
         offset = 0
-        for row in self._grid[row:]:
-            diag_vals.append(row[col + offset])
+        for row in self._grid[height:]:
+            diag_vals.append(row[width + offset])
             offset += 1
+            if offset >= self._width - width:
+                break
+
         qty += 1
         if qty:
             res_lst = diag_vals[:qty]
