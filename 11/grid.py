@@ -61,19 +61,26 @@ class Grid:
             return tuple(res_lst)
         return ()
 
-    def get_diag_neighbors(self, qty, pos):
+    def get_diag_neighbors(self, qty, pos, mode='right'):
         """
         Returns current position value + specified qty of the
-        downward diagonal right neighbors.
+        downward diagonal right or left neighbors.
         """
         height, width = pos
         diag_vals = []
         offset = 0
         for row in self._grid[height:]:
             diag_vals.append(row[width + offset])
-            offset += 1
-            if offset >= self._width - width:
-                break
+            if mode == 'right':
+                offset += 1
+                if offset >= self._width - width:
+                    break
+            elif mode == 'left':
+                offset -= 1
+                if -offset > width:
+                    break
+            else:
+                return ()
 
         qty += 1
         if qty:
