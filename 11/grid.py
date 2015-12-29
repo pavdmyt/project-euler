@@ -4,19 +4,19 @@ Grid class.
 
 
 class Grid:
-    # !!!TODO: align `h, w` to `row, col` where appropriate.
+    """
+    Grid object with methods to get neighbor values.
+    """
     def __init__(self, height, width, export_grid=None):
         if export_grid:
-            # !!!TODO: make CLONE here.
-            self._grid = export_grid
+            self._grid = [[col for col in row] for row in export_grid]
+        # empty grid.
         else:
             self._grid = [[[] for col in range(width)]
                           for row in range(height)]
 
         self._height = len(self._grid)
         self._width = len(self._grid[0])
-        self._moves_done = 0  # required for looping over the grid.
-        self._flat_grid = [item for row in self._grid for item in row]
 
     def __repr__(self):
         res = [str(row) for row in self._grid]
@@ -24,7 +24,7 @@ class Grid:
 
     def get_size(self):
         """
-        Return (grid.height, grid.width).
+        Return grid size.
         """
         return self._height, self._width
 
@@ -34,27 +34,25 @@ class Grid:
         """
         return self._grid[row][col]
 
-    # !!!TODO: consider moving `get_neighbors` methods into
-    #          separate class.
     def get_right_neighbors(self, qty, pos):
         """
-        Returns current position value + specified qty of the
-        neighbors to the right.
+        Return tuple with current position value and specified
+        qty of the neighbors to the right.
         """
-        row, col = pos
+        height, width = pos
         qty += 1
         if qty:
-            res_lst = self._grid[row][col : col + qty]
+            res_lst = self._grid[height][width: width + qty]
             return tuple(res_lst)
         return ()
 
     def get_down_neighbors(self, qty, pos):
         """
-        Returns current position value + specified qty of the
-        downward neighbors.
+        Return tuple with current position value and specified
+        qty of the downward neighbors.
         """
-        row, col = pos
-        col_vals = [row[col] for row in self._grid[row:]]
+        height, width = pos
+        col_vals = [row[width] for row in self._grid[height:]]
         qty += 1
         if qty:
             res_lst = col_vals[:qty]
@@ -63,8 +61,8 @@ class Grid:
 
     def get_diag_neighbors(self, qty, pos, mode='right'):
         """
-        Returns current position value + specified qty of the
-        downward diagonal right or left neighbors.
+        Return tuple with current position value and specified
+        qty of the downward diagonal right or left neighbors.
         """
         height, width = pos
         diag_vals = []

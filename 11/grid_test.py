@@ -16,6 +16,15 @@ def ref_grid_obj(ex_grid):  # reference grid object
     return grid
 
 
+def test_init(ex_grid, ref_grid_obj):
+    # Grid instantiation clones input (external) grid.
+    ref_grid_obj._grid[0][0] = 100  # changing one item.
+    assert ref_grid_obj._grid[0][0] != ex_grid[0][0]
+
+    ref_grid_obj._grid[1] = [8, 7, 6, 5]  # changing entire row.
+    assert ref_grid_obj._grid[1] != ex_grid[1]
+
+
 def test_get_size(ex_grid, ref_grid_obj):
     height = len(ex_grid)
     width = len(ex_grid[0])
