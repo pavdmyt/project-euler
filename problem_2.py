@@ -15,8 +15,7 @@ def genfib(maxval):
 
 
 def main():
-    fib_nums = [num for num in genfib(LIMIT)]
-    even_fib_nums = filter(lambda x: x % 2 == 0, fib_nums)
+    even_fib_nums = [num for num in genfib(LIMIT) if num % 2 == 0]
     res = sum(even_fib_nums)
     print(res)
 
