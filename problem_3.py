@@ -22,12 +22,10 @@ def primes_below_num(num):
 def main():
     # There is no reason to search prime factors greater
     # than square root of the given number.
-    possible_factors = primes_below_num(near_sqrt)
-    lst = []
-    for prime in possible_factors:
-        if NUM % prime == 0:
-            lst.append(prime)
-    print(max(lst))
+    primes_lst = primes_below_num(near_sqrt)
+    factors_lst = [prime for prime in primes_lst if NUM % prime == 0]
+    res = max(factors_lst)
+    print(res)
 
 
 if __name__ == '__main__':
