@@ -6,13 +6,13 @@ import misc
 
 
 def main():
-    lst = [2]
-    num = 3
-    while len(lst) < 10001:
-        if misc.is_prime(num):
-            lst.append(num)
+    counter = 1
+    num = 1
+    while counter < 10001:
         num += 2
-    print(lst[-1])
+        if misc.is_prime(num):
+            counter += 1
+    print(num)
 
 
 if __name__ == '__main__':
