@@ -6,26 +6,34 @@ import math
 
 
 NUM = 600851475143
-near_sqrt = int(math.sqrt(NUM))
 
 
-def primes_below_num(num):
+def prime_factors(num):
     """
-    Returns a list of all primes below given number.
+    Returns a list of primes factors for the given number.
     """
-    res = range(2, num+1)
-    for i in range(2, int(math.sqrt(num))):
-        res = filter(lambda x: x == i or x % i, res)
-    return res
+    factors = []
+    # Handle 2
+    while num % 2 == 0:
+        factors.append(2)
+        num /= 2
+
+    # Handle all odd nums <= sqrt(num)
+    for i in range(3, int(math.sqrt(num)) + 1, 2):
+        while num % i == 0:
+            factors.append(i)
+            num /= i
+
+    # Handle num is prime
+    if num > 2:
+        factors.append(num)
+
+    return factors
 
 
 def main():
-    # There is no reason to search prime factors greater
-    # than square root of the given number.
-    primes_lst = primes_below_num(near_sqrt)
-    factors_lst = [prime for prime in primes_lst if NUM % prime == 0]
-    res = max(factors_lst)
-    print(res)
+    factors = prime_factors(NUM)
+    print(max(factors))
 
 
 if __name__ == '__main__':
