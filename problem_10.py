@@ -6,11 +6,8 @@ import misc
 
 
 def main():
-    res = 2
-    for num in range(3, 2000000, 2):
-        if misc.is_prime(num):
-            res += num
-    print(res)
+    res = misc.sieve_Erat(2000000)
+    print(sum(res))
 
 
 if __name__ == '__main__':
