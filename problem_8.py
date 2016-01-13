@@ -43,7 +43,7 @@ def get_product(num_str):
 
 def main():
     # Remove newlines.
-    input = NUM.translate(None, '\n')
+    input = NUM.replace('\n', '')
 
     products = []
     for i in range(len(NUM)):

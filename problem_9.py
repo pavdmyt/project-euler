@@ -12,7 +12,7 @@ def gen_divisor_pairs(num):
     """
     for divisor in range(1, int(math.sqrt(num)) + 1):
         if num % divisor == 0:
-            yield divisor, num / divisor
+            yield divisor, num // divisor
 
 
 def gen_triples():
@@ -26,7 +26,7 @@ def gen_triples():
     """
     r = 2  # any even int.
     while True:
-        st = r**2 / 2
+        st = r**2 // 2
         pairs = [pair for pair in gen_divisor_pairs(st)]
         for pair in pairs:
             s, t = pair
